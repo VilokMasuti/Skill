@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { type NextRequest, NextResponse } from "next/server"
 import { connectToDatabase } from "../../../../../lib/mongodb"
 import { Skill } from "../../../../../lib/models/skill"
 import { getSession } from "../../../../../lib/auth"
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+ async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
   try {
     const session = await getSession()
 
