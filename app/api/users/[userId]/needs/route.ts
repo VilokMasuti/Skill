@@ -9,7 +9,7 @@ import { User } from "../../../../../lib/models/user"
  * GET handler for fetching a user's needs
  * Requires authentication and authorization (user can only view their own needs)
  */
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+ async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
   try {
     const session =   await getSession()
 
