@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { getSession } from '../../../../lib/auth';
 import { Message } from '../../../../lib/models/message';
 import { connectToDatabase } from '../../../../lib/mongodb';
-export async function GET(
+ async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -43,7 +43,7 @@ export async function GET(
   }
 }
 
-export async function DELETE(
+ async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
