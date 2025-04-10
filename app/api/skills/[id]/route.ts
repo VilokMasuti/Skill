@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { getSession } from '../../../../lib/auth';
 import { Skill } from '../../../../lib/models/skill';
 import { connectToDatabase } from '../../../../lib/mongodb';
-import { getSession } from '../../../../lib/auth';
+
 
 async function GET(
   request: NextRequest,
