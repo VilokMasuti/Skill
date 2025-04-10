@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { type NextRequest, NextResponse } from "next/server"
 import { connectToDatabase } from "../../../../lib/mongodb"
 import { getSession } from "../../../../lib/auth"
@@ -14,7 +15,7 @@ const UpdateProfileSchema = z.object({
   needs: z.array(z.string().max(50, "Each need must not exceed 50 characters")).optional(),
 })
 
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+ async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
   try {
     const session = await getSession()
 
@@ -50,7 +51,7 @@ export async function GET(request: NextRequest, { params }: { params: { userId: 
   }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { userId: string } }) {
+async function PATCH(request: NextRequest, { params }: { params: { userId: string } }) {
   try {
     const session = await getSession()
 
