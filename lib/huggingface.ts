@@ -1,7 +1,6 @@
 import { HfInference } from "@huggingface/inference"
 
-// Initialize the Hugging Face inference client with a free API key
-// Note: For production, this should be an environment variable
+// Initialize the Hugging Face inference client with API key
 const hf = new HfInference(process.env.HUGGINGFACE_API_KEY || "")
 
 // Using the free sentence-transformers model for text embeddings
@@ -13,13 +12,20 @@ const EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
  * @returns Array of embeddings or null if there's an error
  */
 export async function getEmbeddings(text: string): Promise<number[] | null> {
+  if (!text || text.trim() === "") {
+    return null
+  }
+
   try {
+    console.log(`Getting embeddings for text: ${text.substring(0, 50)}...`)
     const response = await hf.featureExtraction({
       model: EMBEDDING_MODEL,
       inputs: text,
     })
 
-    return Array.isArray(response[0]) ? (response[0] as number[]) : (response as number[])
+    console.log("Embeddings generated successfully")
+    // Ensure the response is flattened to a number[]
+    return Array.isArray(response[0]) ? (response as number[][])[0] : (response as number[])
   } catch (error) {
     console.error("Error getting embeddings:", error)
     return null
